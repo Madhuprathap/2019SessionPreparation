@@ -10,15 +10,19 @@ public class LongestIncreasingSubSequence {
 		int[] LIS = Arrays.stream(new int[input.length]).map(n -> 1).toArray();
 		
 		// DP solution save the re occurring problems solution
+		int max = 1;
 		for (int i = 0; i < input.length; i++) {
 			for (int j = 0; j < i; j++) {
 				if (input[i] > input[j] && LIS[j] + 1 > LIS[i]) {
 					LIS[i] = LIS[j] + 1;
+					if(max < LIS[i]) {
+						max = LIS[i];
+					}
 				}
 			}
 		}
 		
-		System.out.println("LIS length: " + LIS[input.length-1]);
+		System.out.println("LIS length: " + max);
 	}
 
 }
